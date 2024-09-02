@@ -18,40 +18,42 @@
 </head>
 <body>
 
-    <h2>Document Display Methods</h2>
+    <div class="container">
+        <h2 class="mt-4">Document Display Methods</h2>
 
-    <!-- Method 1: Embedding Document Using <iframe> -->
-    <h3>1. Embed Document with <iframe></h3>
-    <iframe src="sample.pdf" width="100%" height="600px" style="border: none;"></iframe>
+        <!-- Method 1: Embedding Document Using <iframe> -->
+        <h3>1. Embed Document with &lt;iframe&gt;</h3>
+        <iframe src="sample.pdf" width="100%" height="600px" style="border: none;"></iframe>
 
-    <!-- Method 2: Using a Modal to Display Document -->
-    <h3>2. Display Document in a Modal</h3>
-    <!-- Trigger Modal Button -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#documentModal">
-        Open Document in Modal
-    </button>
+        <!-- Method 2: Using a Modal to Display Document -->
+        <h3 class="mt-4">2. Display Document in a Modal</h3>
+        <!-- Trigger Modal Button -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#documentModal">
+            Open Document in Modal
+        </button>
 
-    <!-- Modal Structure -->
-    <div class="modal fade" id="documentModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Document Viewer</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Embed the document in an iframe inside the modal -->
-                    <iframe src="sample.pdf" width="100%" height="500px" style="border: none;"></iframe>
+        <!-- Modal Structure -->
+        <div class="modal fade" id="documentModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Document Viewer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Embed the document in an iframe inside the modal -->
+                        <iframe src="sample.pdf" width="100%" height="500px" style="border: none;"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Method 3: Display Document Using PDF.js -->
-    <h3>3. Display Document Using PDF.js</h3>
-    <div id="pdf-container"></div>
+        <!-- Method 3: Display Document Using PDF.js -->
+        <h3 class="mt-4">3. Display Document Using PDF.js</h3>
+        <div id="pdf-container"></div>
+    </div>
 
     <script>
         // Initialize PDF.js
