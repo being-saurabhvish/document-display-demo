@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Display Demo</title>
+    <!-- Include Bootstrap CSS for Modal -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <style>
+        #pdf-container {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Document Display Methods</h2>
+
+    <!-- Method 1: Embedding Document Using <iframe> -->
+    <h3>1. Embed Document with <iframe></h3>
+    <iframe src="sample.pdf" width="100%" height="600px" style="border: none;"></iframe>
+
+    <!-- Method 2: Using a Modal to Display Document -->
+    <h3>2. Display Document in a Modal</h3>
+    <!-- Trigger Modal Button -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#documentModal">
+        Open Document in Modal
+    </button>
+
+    <!-- Modal Structure -->
+    <div class="modal fade" id="documentModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Document Viewer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Embed the document in an iframe inside the modal -->
+                    <iframe src="sample.pdf" width="100%" height="500px" style="border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Method 3: Display Document Using PDF.js -->
+    <h3>3. Display Document Using PDF.js</h3>
+    <div id="pdf-container"></div>
+
+    <script>
+        // Initialize PDF.js
+        const url = 'sample.pdf'; // Replace with the path to your PDF file
+        const loadingTask = pdfjsLib.getDocument(url);
+        loadingTask.promise.then(pdf => {
+            pdf.getPage(1).then(page => {
+                const viewport = page.getViewport({ scale: 1.5 });
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                document.getElementById('pdf-container').appendChild(canvas);
+
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport,
+                };
+                page.render(renderContext);
+            });
+        });
+    </script>
+
+    <!-- Include Bootstrap JS and dependencies for Modal functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
